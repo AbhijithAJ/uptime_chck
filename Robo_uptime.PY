@@ -9,9 +9,9 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-email = 'cybervie.robo@gmail.com'
-password = '9#Ionotss'
-send_to_email = 'info@cybervie.com'
+email = input('Enter Emai:')
+password = input('Enter password')
+send_to_email = input('enter target mailid')
 subject = 'ROBO_UPTIME'
 # message = 'message'  # ------------------------------------------------------------
 lst = []
@@ -29,10 +29,13 @@ while True:
                 msg.attach(MIMEText(Message, 'plain'))
                 server = smtplib.SMTP('smtp.gmail.com', 587)
                 server.starttls()
-                server.login(email, password)
-                text = msg.as_string()
-                server.sendmail(email, send_to_email, text)
-                server.quit()
+                try:
+                    server.login(email, password)
+                    text = msg.as_string()
+                    server.sendmail(email, send_to_email, text)
+                    server.quit()
+                except Exception as a:
+                    print(a)
             except Exception as a:
                 print('\n---------------------------------------------------NOTE------------------------------------------------------')
                 print("Error:", a, datetime.datetime.now())
@@ -56,8 +59,8 @@ while True:
                 code = str(code)
                 
                 if code == '200':
-                    print(r)
-                    print(r.content)
+                    #print(r)
+                    #print(r.content)
                     pass
                 else:
                     currentDT = datetime.datetime.now()
@@ -71,7 +74,7 @@ while True:
                         code = r.status_code
                         code = str(code)
                     if code == '200':
-                        print(r)
+                        print(code)
                        
                         pass
                     else:
